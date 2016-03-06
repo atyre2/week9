@@ -6,11 +6,11 @@ library(ggplot2)
 bFluCases <- read.table("data/BirdFluCases.txt", header = TRUE, sep = "\t")
 names(bFluCases)[8] <- "Indonesia"
 
-l_ply(bFluCases, .fun = is.numeric, .print = TRUE)
+#l_ply(bFluCases, .fun = is.numeric, .print = TRUE)
 
 # total number of bird flu cases by country
-countries = names(bFluCases)[-1]
-data.frame(countries, totalCases = laply(bFluCases[,-1], .fun = sum))
+#countries = names(bFluCases)[-1]
+#data.frame(countries, totalCases = laply(bFluCases[,-1], .fun = sum))
 
 # Total number of cases per year
 totalbFlu <- ddply(bFluCases, .variables = "Year", 
@@ -21,12 +21,13 @@ totalbFlu <- ddply(bFluCases, .variables = "Year",
 # make long dataframe
 longbFluCases <- gather(bFluCases, Countries, Cases, -Year)
 
-ggplot(longbFluCases, aes(x = Year, y = Cases)) + 
+q <- ggplot(longbFluCases, aes(x = Year, y = Cases)) + 
   geom_line(aes(group = Countries, color = Countries), size=2) + 
   geom_line(data=totalbFlu, mapping = aes(x = Year, y = totalCases), linetype = 2) +
   theme_bw() + 
   theme(legend.position="bottom", legend.key = element_blank())
 
+print(q)
 ## make figure 7.2 Zuur et al 2009
 bFluDeaths <- read.table("data/BirdFluDeaths.txt", header=TRUE, sep="\t")
 names(bFluDeaths)[8] <- "Indonesia"

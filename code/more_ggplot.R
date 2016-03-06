@@ -13,17 +13,17 @@ q <- ggplot(Veg, aes(x=BARESOIL, y = R)) +
   
 # 5.2b
   q + geom_point(shape = 16)
-
+ggsave("graphs/RbySoil.png")
   # reproducing figure 5.2c
   q + geom_point(aes(shape=factor(Transect))) + 
     scale_shape_manual(name = "Transect", values=1:8)
- 
+  ggsave("graphs/RbySoil.png")
 # now 5.2d
   q + geom_point(aes(shape=Time>1974)) + 
     scale_shape_manual(name = "Period", values=c(1,16),
                        labels = c("Year<=1974","Year > 1974")) + 
     theme(legend.position = "bottom")
-  
+  ggsave("graphs/RbySoil.png")
   
 # 5.4
   q + geom_point(aes(shape=Time>1974, color = Time>1974)) + 

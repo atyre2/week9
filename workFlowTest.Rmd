@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "Drew Tyre"
+date: "March 6, 2016"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Bird Flu analysis
+
+This data comes from the WHO and represents the counts of human bird flu cases between 2003 and 2008, by country. 
+
+```{r casesByYear, echo=FALSE}
+source("code/bird_flu_analysis.R")
+```
+
+## Tooth nitrogen analysis
+
+This data is $\delta ^ {15} N$ ratios from sperm whale teeth. 
+
+```{r toothNitrogen, echo=FALSE}
+source("code/week9_challenge_solution.R")
+```
+
