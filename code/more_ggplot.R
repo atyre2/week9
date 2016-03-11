@@ -3,7 +3,7 @@ Veg <- read.table("data/Vegetation2.txt", header=TRUE)
 library(ggplot2)
 # this part the same
 q <- ggplot(Veg, aes(x=BARESOIL, y = R)) + 
-  theme_classic() +
+  theme_bw() +
   labs(x = "Exposed Soil", y = "Species Richness") + 
   theme(axis.text.y = element_text(angle = 90, hjust = 0.5)) +
   scale_y_continuous(breaks = seq(6,18,2))

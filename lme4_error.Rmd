@@ -1,0 +1,39 @@
+---
+title: "lme4 lapply error"
+author: "Drew Tyre"
+date: "March 11, 2016"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The error arises when running glmer inside lapply(). 
+
+```{r demoError, error=TRUE}
+library(lme4)
+cbpp$obs <- 1:nrow(cbpp)
+(gm2 <- glmer(cbind(incidence, size - incidence) ~ period +
+    (1 | herd) +  (1|obs),
+              family = binomial, data = cbpp))
+
+listOfFormulas <- list(
+  cbind(incidence, size - incidence) ~ 1 +
+    (1 | herd) +  (1|obs),
+  cbind(incidence, size - incidence) ~ period +
+    (1 | herd) +  (1|obs)
+)
+lapply(listOfFormulas,glmer,family=binomial,data=cbpp)
+sessionInfo()
+```
+The error did not occur when using `lme4_1.1-10`.
+Creating an anonymous function works.
+
+```{r error=TRUE}
+lapply(listOfFormulas,
+       function(mm) glmer(mm, ,family=binomial,data=cbpp))
+
+```
+
+
